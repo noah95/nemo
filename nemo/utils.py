@@ -87,9 +87,9 @@ def export_onnx(file_name, net, net_inner, input_shape, round_params=True, perm=
     if redefine_names:
         input_names  = [ 'input' ] + [ pattern.sub('_', n) for n,_ in net_inner.named_parameters() ]
         output_names = [ 'output' ]
-        torch.onnx.export(net_inner, dummy_input, file_name, verbose=verbose, do_constant_folding=True, input_names=input_names, output_names=output_names, export_params=True)
+        torch.onnx.export(net_inner, dummy_input, file_name, verbose=verbose, do_constant_folding=True, input_names=input_names, output_names=output_names, export_params=True, opset_version=11)
     else:
-        torch.onnx.export(net_inner, dummy_input, file_name, verbose=verbose, do_constant_folding=True, export_params=True)
+        torch.onnx.export(net_inner, dummy_input, file_name, verbose=verbose, do_constant_folding=True, export_params=True, opset_version=11)
 
 PRECISION_RULE_KEYS_REQUIRED = {
     "for_epochs": 1,
